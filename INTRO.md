@@ -1,10 +1,3 @@
-# Unit Testing with Python
-
-# List of contents
-* [introduction]
-* [introduction-code]
-* [handling_IO]
-* [date_pattern]
 
 
 ## WHADAFUCK IS A TEST?
@@ -123,10 +116,4 @@ My plans with this repository is to to teach ~~you~~ me how to master on python 
 
 [specification]: http://langrsoft.com/2006/06/05/are-tests-specs/
 [gif-come-here]: https://media.giphy.com/media/3ohA2VpfGovSNE8ESI/giphy.gif
-
-[introduction]: ./INTRO.md
-[introduction-code]: ./intro.py
-
-[handling_IO]: ./handling_io/README.md
-[date_pattern]: ./date_pattern/README.md
 
