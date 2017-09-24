@@ -1,7 +1,8 @@
 import tempfile
 import unittest
 from unittest.mock import patch, mock_open
-from examples.input_output import io_utils
+
+from examples.io_utils import io_utils
 
 try:
     from StringIO import StringIO
@@ -13,7 +14,7 @@ class TestIoUtils(unittest.TestCase):
     def test_get_content_from_file_path(self):
         expected = 'banana'
         file_path = ''
-        with patch('examples.input_output.io_utils.open', mock_open(read_data=expected)) as m:
+        with patch('examples.count_lines.io_utils.open', mock_open(read_data=expected)) as m:
             actual = io_utils.get_content_from_file_path(file_path)
             m.assert_called_once_with(file_path, 'r')
 
@@ -24,7 +25,7 @@ class TestIoUtils(unittest.TestCase):
         file_content = "banana"
         expected = file_content + extra
         file_path = 'motherfucking/file/path'
-        with patch('examples.input_output.io_utils.open', mock_open(read_data=file_content)) as file:
+        with patch('examples.count_lines.io_utils.open', mock_open(read_data=file_content)) as file:
             actual = io_utils.return_file_with_extra_text(file_path, extra)
             file.assert_called_once_with(file_path, 'r')
 
