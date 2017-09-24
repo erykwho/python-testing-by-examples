@@ -5,11 +5,16 @@
 ### Examples
 #### Mocking
 * [Reading / Writing on Files][reading-writing-on-files]
+* [Mocking a method call][mocking-a-method-call]
 
 ### Tutorials
 #### Mocking
-* [Essentials of mocking][essentials]
-* [Jedi master level of mocking][advanced]
+* **[Essentials][essentials]**
+    * [Patch][patch]
+    * [Mock Object][mock-object]
+    * [How to mock][how-to-mock]
+
+* **[Jedi master level of mocking][advanced]**
 
 ---
 
@@ -142,5 +147,11 @@ My plans with this repository is to to teach ~~you~~ me how to master on python 
 [be-patient]: https://media.giphy.com/media/xT9KVmZwJl7fnigeAg/giphy.gif
 
 [reading-writing-on-files]: ./docs/en/mocking/examples/reading-writing-on-files.md
+[mocking-a-method-call]: ./docs/en/mocking/examples/mocking-a-method-call.md
 [essentials]: ./docs/en/mocking/essentials
 [advanced]: ./docs/en/mocking/advanced
+
+
+[patch]: ./docs/en/mocking/essentials/patch.md
+[how-to-mock]: ./docs/en/mocking/essentials/how-to-mock.md
+[mock-object]: ./docs/en/mocking/essentials/mock-object.md
