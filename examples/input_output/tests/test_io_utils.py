@@ -1,20 +1,19 @@
 import tempfile
 import unittest
 from unittest.mock import patch, mock_open
+from examples.input_output import io_utils
 
 try:
     from StringIO import StringIO
 except ImportError:
     from io import StringIO
 
-from handling_io import io_utils
-
 
 class TestIoUtils(unittest.TestCase):
     def test_get_content_from_file_path(self):
         expected = 'banana'
         file_path = ''
-        with patch('handling_io.handling_io.open', mock_open(read_data=expected)) as m:
+        with patch('examples.input_output.io_utils.open', mock_open(read_data=expected)) as m:
             actual = io_utils.get_content_from_file_path(file_path)
             m.assert_called_once_with(file_path, 'r')
 
@@ -25,7 +24,7 @@ class TestIoUtils(unittest.TestCase):
         file_content = "banana"
         expected = file_content + extra
         file_path = 'motherfucking/file/path'
-        with patch('handling_io.handling_io.open', mock_open(read_data=file_content)) as file:
+        with patch('examples.input_output.io_utils.open', mock_open(read_data=file_content)) as file:
             actual = io_utils.return_file_with_extra_text(file_path, extra)
             file.assert_called_once_with(file_path, 'r')
 

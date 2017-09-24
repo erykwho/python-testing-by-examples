@@ -4,14 +4,14 @@
 import datetime
 import unittest
 
-from date_pattern.composite import CompositePattern
-from date_pattern.day import DayPattern
-from date_pattern.last_day_in_month import LastDayInMonthPattern
-from date_pattern.last_weekday_in_month import LastWeekdayInMonthPattern
-from date_pattern.month import MonthPattern
-from date_pattern.nth_weekday_in_month import NthWeekdayInMonthPattern
-from date_pattern.weekday import WeekdayPattern
-from date_pattern.year import YearPattern
+from examples.date_pattern.composite import CompositePattern
+from examples.date_pattern.day import DayPattern
+from examples.date_pattern.last_day_in_month import LastDayInMonthPattern
+from examples.date_pattern.last_weekday_in_month import LastWeekdayInMonthPattern
+from examples.date_pattern.month import MonthPattern
+from examples.date_pattern.nth_weekday_in_month import NthWeekdayInMonthPattern
+from examples.date_pattern.weekday import WeekdayPattern
+from examples.date_pattern.year import YearPattern
 
 MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY = range(0, 7)
 
