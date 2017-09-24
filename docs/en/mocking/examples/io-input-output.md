@@ -4,6 +4,9 @@ Or **Input/Output**
 
 or just **working with files**
 
+* [Reading Files][reading-files]
+* [Writing on Files][writing-on-files]
+
 ## Reading Files
 
 Let's say I have a method that returns the number of lines from a file.
@@ -37,7 +40,9 @@ with open('file/path', r) as _file:
     # ...
 ````
 
-### Using mock_open (see the [docs][official-documentation-mock-open])
+### Using mock_open
+**see the [docs][official-documentation-mock-open]**
+
 We are going to use **patch with *parameter*** `new=mock_open()`, so the target is replaced with a **mock_open**.
 
 `mock_open()` has a parameter called `read_data` that is a string for the `read()`, `readline()` and `readlines()` methods of the file opened.
@@ -98,7 +103,54 @@ See the [source code][count-lines-source-code]
 
 ## Writing on Files
 
-**In development**
+Let's make the simplest. A method that **receives a message** and **write it on a file** given a specific **file_path**.
+
+```` python
+class FileWriter:
+    @staticmethod
+    def write(file_path, content):
+        with open(file_path, 'w') as file:
+            file.write(content)
+````
+
+To mock the opening file and writing content on it, we can use `mock_open()`[official-documentation-mock-open].
+The mock for this object will be similar to what we've previously seen in [Reading Files][reading-files], with the exception that we don't need to pass the parameter `read_data` in `mock_open()`, because we are not retrieving data from the file.
+
+### How the assertion will look like?
+To answer this question, we need to ask ourselves:
+> What do we want to test in this function?
+
+A nice test case, in my delusional opinion, will test if a **specific file_path** was called on `open()`, with a specific **open mode**, and if a **specific content** was **written** in the file.
+
+The [**Mock**][official-documentation-mock-object] object implements assertions that could help us testing that.
+The one that will be useful to us is `MockObject.assert_called_once_with()`.
+
+Let's take a look on the test?
+
+```` python
+import unittest
+from unittest.mock import patch, mock_open
+
+from examples.write_on_file.file_writer import FileWriter
+
+
+class TestFileWriter(unittest.TestCase):
+    def test_file_writer(self):
+        fake_file_path = "fake/file/path"
+        content = "Message to write on file to be written"
+        with patch('examples.write_on_file.file_writer.open', mock_open()) as mocked_file:
+            FileWriter().write(fake_file_path, content)
+
+            # assert if opened file on write mode 'w'
+            mocked_file.assert_called_once_with(fake_file_path, 'w')
+
+            # assert if write(content) was called from the file opened
+            # in another words, assert if the specific content was written in file
+            mocked_file().write.assert_called_once_with(content)
+
+````
+
+See the [source code][write-on-file-source-code].
 
 ## Credits
 * [Official documentation][official-documentation]
@@ -108,13 +160,18 @@ See the [source code][count-lines-source-code]
 [official-documentation]: https://docs.python.org/3/library/unittest.mock.html
 [official-documentation-mock-open]: https://docs.python.org/3/library/unittest.mock.html#mock-open
 [official-documentation-where-to-patch]: https://docs.python.org/3/library/unittest.mock.html#where-to-patch
+[official-documentation-mock-object]: https://docs.python.org/3/library/unittest.mock.html#unittest.mock.Mock
 
 [python-context-manager]: https://jeffknupp.com/blog/2016/03/07/python-with-context-managers/
 
 [count-lines-source-code]: https://github.com/otrabalhador/python-testing-by-examples/tree/master/examples/count_lines
+[write-on-file-source-code]: https://github.com/otrabalhador/python-testing-by-examples/tree/master/examples/write_on_file
 
 [mock_open]: https://docs.python.org/3/library/unittest.mock.html#mock-open
 [patch]: ../essentials/patch.md
 [assert_called]: https://http.cat/204
 
 [wait]: https://media.giphy.com/media/xT9KVmZwJl7fnigeAg/giphy.gif
+
+[reading-files]: ./io-input-output.html#reading-files
+[writing-on-files]: ./io-input-output.html#writing-on-files
