@@ -1,9 +1,6 @@
-# I/O
+# Reading / Writing on Files
 
-Or **Input/Output**
-
-or just **working with files**
-
+## Topics on this page:
 * [Reading Files][reading-files]
 * [Writing on Files][writing-on-files]
 
@@ -25,13 +22,13 @@ class FileReader:
 ````
 
 But I don't want to open a real file. I wanna **mock the opening** and **the content** of the file.
-This is *elegantly possible* with [mock_open][mock_open].
+This is *elegantly possible* with [`mock_open()`][official-documentation-mock-open].
 
 This replace the use of `open()`.
 
 This works with both `open()` called directly like this:
 ```` python
->> file = open('file/path', r)
+file = open('file/path', r)
 ````
 
 and with a context manager like this:
@@ -41,9 +38,9 @@ with open('file/path', r) as _file:
 ````
 
 ### Using mock_open
-**see the [docs][official-documentation-mock-open]**
+*See the [official documentation][official-documentation-mock-open] for further detail.*
 
-We are going to use **patch with *parameter*** `new=mock_open()`, so the target is replaced with a **mock_open**.
+We are going to use **patch** with **parameter** `new=mock_open()`, so the target is replaced with a **mock_open** object.
 
 `mock_open()` has a parameter called `read_data` that is a string for the `read()`, `readline()` and `readlines()` methods of the file opened.
 
@@ -58,18 +55,18 @@ with patch('__main__.open', new=mock_open(read_data='Fooooo')) as _file:
 #### FAQ about this code
 
 > Whatafuck is a context manager?
-> It's basically using the `with ..... as variable:` syntax.
+> It's basically using the syntax `with ..... as variable:`.
 > More details [here][python-context-manager].
 
-> Whatafuck is that **'\_\_main\_\_.open'**?
-> That, my friend, is the reference for where the object **open** is being *looked up*. In the example above, that `__main__.open` doesn't make sense by itself because there is no object being called.
+> Whatafuck is that `__main__.open`?
+> That, my friend, is the reference for where the object **open** is being *looked up*. In the example above, however, that `__main__.open` is just for illustration, because I wasn't mocking any specific **open()**.
 > More details in the [official doc][official-documentation-where-to-patch].
 
 > Whatafuck is that **assert_called_once_with**?
-> You are asserting that `self` is being called only one time with the given parameters.
+> It makes an assertion if the object was called only one time with the respective parameters.
 > Check it out [here][assert_called].
 
-I ~~bet my ass~~ am pretty sure that you are fucking ready to test our method `count_lines()` now.
+I ~~bet my ass~~ am pretty sure that you are fucking ready to test our method `count_lines_from_file()` now.
 
 So let's check out the test code.
 
@@ -113,8 +110,8 @@ class FileWriter:
             file.write(content)
 ````
 
-To mock the opening file and writing content on it, we can use `mock_open()`[official-documentation-mock-open].
-The mock for this object will be similar to what we've previously seen in [Reading Files][reading-files], with the exception that we don't need to pass the parameter `read_data` in `mock_open()`, because we are not retrieving data from the file.
+To mock the opening file and writing content on it, we can use [`mock_open()`][official-documentation-mock-open].
+The mock for this object will be similar to what we've previously seen in [Reading Files][reading-files], with the exception that we don't need to pass the parameter `read_data` in `mock_open()` because we are not retrieving data from the file.
 
 ### How the assertion will look like?
 To answer this question, we need to ask ourselves:
@@ -150,12 +147,36 @@ class TestFileWriter(unittest.TestCase):
 
 ````
 
+In this test, we mock the opening of the file with a context manager.
+The variable `mocked_file` is the mocked opened file.
+
+* `examples.write_on_file.file_writer.open`  is the reference for where the object `open()` is being *looked up*.
+
+Inside the context manager, we can:
+
+* call our actual method `FileWriter().write(fake_file_path, content)`
+* assert if `mocked_file` was opened with the **specific file path: `fake_file_path`, and write open mode: `w`**
+* assert if `write()` from `mocked_file` was called with the parameter `content`
+
 See the [source code][write-on-file-source-code].
+
+## Congratulations
+
+You've just learned how to mock reading and writing on a file without even opening a real one.
+
+**That's a huge reason to celebrate. Congrats!!!**
+
+![Let's celebrate](https://media.giphy.com/media/e4rNcOFD7YPlK/giphy.gif)
+
+## What about now?
+* See other [examples][examples]
+* Go to [advanced mocking][advanced]
+* Go to [the essentials of mocking][essentials]
+* Go to [mocking main menu][mocking-main-menu]
+* Go to [summary][summary]
 
 ## Credits
 * [Official documentation][official-documentation]
-
-
 
 [official-documentation]: https://docs.python.org/3/library/unittest.mock.html
 [official-documentation-mock-open]: https://docs.python.org/3/library/unittest.mock.html#mock-open
@@ -164,14 +185,18 @@ See the [source code][write-on-file-source-code].
 
 [python-context-manager]: https://jeffknupp.com/blog/2016/03/07/python-with-context-managers/
 
-[count-lines-source-code]: https://github.com/otrabalhador/python-testing-by-examples/tree/master/examples/count_lines
+[count-lines-source-code]: https://github.com/otrabalhador/python-testing-by-examples/tree/master/examples/count_lines_from_file
 [write-on-file-source-code]: https://github.com/otrabalhador/python-testing-by-examples/tree/master/examples/write_on_file
 
-[mock_open]: https://docs.python.org/3/library/unittest.mock.html#mock-open
-[patch]: ../essentials/patch.md
 [assert_called]: https://http.cat/204
+
+[reading-files]: #reading-files
+[writing-on-files]: #writing-on-files
 
 [wait]: https://media.giphy.com/media/xT9KVmZwJl7fnigeAg/giphy.gif
 
-[reading-files]: ./io-input-output.html#reading-files
-[writing-on-files]: ./io-input-output.html#writing-on-files
+[advanced]: ../advanced
+[examples]: ../examples
+[essentials]: ../essentials
+[mocking-main-menu]: ../
+[summary]: ../../

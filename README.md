@@ -1,10 +1,19 @@
-# Unit Testing with Python
+# Unit Testing with Python 3
 
-# List of contents
-* [summary]
+## Summary
 
+### Examples
+#### Mocking
+* [Reading / Writing on Files][reading-writing-on-files]
 
-## WHADAFUCK IS A TEST?
+### Tutorials
+#### Mocking
+* [Essentials of mocking][essentials]
+* [Jedi master level of mocking][advanced]
+
+---
+
+## DAFUCK IS A TEST?
 
 If you don't fucking know what is a test, let me tell ya.
 
@@ -21,7 +30,6 @@ The same as for the test, dãã. But for a program unity. For a method, if you w
 ```` python
 def who(ze_bula):
     return "My {}".format(ze_bula)
-
 ````
 
 > Can be tested with
@@ -35,7 +43,6 @@ class TestWho(unittest.TestCase):
         expected = "My BotoFe"
         actual = who("BotoFe")
         self.assertEqual(expected, actual)
-
 ````
 
 Does the code makes fucking sense?
@@ -52,7 +59,7 @@ It's awesome aswell.
 You don't need to call private functions that does horrifyingly horrifying things that you don't care.
 You can mock them.
 
-Let's say I have a method called mama(). `mama()` does a lot of things. `mama()` calls a weird function called `weirdo()`
+Let's say I have a method called `mama()`. `mama()` does a lot of things. `mama()` calls a weird function called `weirdo()`
 
 ```` python
 # weirdo() is a method you will want to mock
@@ -60,16 +67,15 @@ def weirdo(a_string):
     # Do a bunch of bunch of bunches of things
     # Do more things
     # Opens a fucking file
-    # OMG. weirdo() is making 500 requests
+    # OMG. weirdo() is making 500 HTTP requests
     # weirdo is being weirdo
     return a_string
 
 # mama() is a method you will want to test
 def mama():
-    # Look at this comment line and imagine a lot of things
     i_am_a_variable = "IMA STRING"
-    omg = weirdo(i_am_a_variable)
-    return omg + '1'
+    weirdo_response = weirdo(i_am_a_variable)
+    return weirdo_response + '1'
 ````
 
 And let's say, for the sake of this tutorial that probably only I will read, that you are testing `mama()` and you want to fake a return of `weirdo()`.
@@ -95,17 +101,26 @@ class TestMama(unittest.TestCase):
         self.assertEqual(expected, actual)
 
 ````
-OMG, this mock is fucking weird, right?
+OMG.. What did happened here?
 
-**Yes and no.**
-* Yes if you don't fucking know how to test with python.
-* Yes if you disagree with me on how to mock `weirdo()`
-* No if you love me.
+Did you see this `patch()`? WTF?
+Could you understand what he is doing?
+Does it make **sense**?
+Did you like it?
+Did you love it?
 
+No matter if you like it or not, testing is essential.
+And tests generally involves mocking methods.
+
+So if you make programs with Python and you don't know how to test your code, i recommend to you to start learning.
+
+**It's necessary.**
 
 ## How can I learn testing?
 
-Come here. Come closer. I'll teach you how.
+Come here. Come closer.
+
+**[I'll teach you how.][summary]**
 
 ![gif-come-here]
 
@@ -113,16 +128,19 @@ My plans with this repository is to to teach ~~you~~ me how to master on python 
 
 
 ## Credits
-* date_pattern package: http://www.onlamp.com/pub/a/python/2005/02/03/tdd_pyunit2.html?page=3
-* mock: https://docs.python.org/3/library/unittest.mock.html
-* mock.assert_...: https://docs.python.org/3/library/unittest.mock.html#unittest.mock.Mock.assert_called
-* testing with python: https://donkirkby.github.io/testing/
+* **date_pattern package:** http://www.onlamp.com/pub/a/python/2005/02/03/tdd_pyunit2.html?page=3
+* **mock:** https://docs.python.org/3/library/unittest.mock.html
+* **mock.assert_\*:** https://docs.python.org/3/library/unittest.mock.html#unittest.mock.Mock.assert_called
+* **testing with python:** https://donkirkby.github.io/testing/
 
-
-## Docs Python (defo read again)
-* https://docs.python.org/3/library/unittest.mock.html#where-to-patch
 
 [specification]: http://langrsoft.com/2006/06/05/are-tests-specs/
 [gif-come-here]: https://media.giphy.com/media/3ohA2VpfGovSNE8ESI/giphy.gif
 
-[summary]: ./docs/en/SUMMARY.md
+[summary]: ./docs/en/
+
+[be-patient]: https://media.giphy.com/media/xT9KVmZwJl7fnigeAg/giphy.gif
+
+[reading-writing-on-files]: ./docs/en/mocking/examples/reading-writing-on-files.md
+[essentials]: ./docs/en/mocking/essentials
+[advanced]: ./docs/en/mocking/advanced

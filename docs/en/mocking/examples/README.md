@@ -1,14 +1,13 @@
 # Examples
 
-* [Working with files (IO)][io-input-output]
-
+* [Reading / Writing on Files][reading-writing-on-files]
 
 ## You may also want to
 * See the [examples][examples]
 * Go to [jedi mocking][advanced]
 
 
-[io-input-output]: ./io-input-output.md
+[reading-writing-on-files]: ./reading-writing-on-files.md
 
 [advanced]: ../advanced
 [examples]: ../examples

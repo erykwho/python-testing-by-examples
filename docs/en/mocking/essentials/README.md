@@ -1,6 +1,6 @@
 # Essentials
 
-...
+* [Patch][patch]
 
 ## You may also want to
 * See the [examples][examples]
@@ -8,3 +8,5 @@
 
 [advanced]: ../advanced
 [examples]: ../examples
+
+[patch]: ./patch.md
