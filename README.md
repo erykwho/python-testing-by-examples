@@ -11,7 +11,7 @@
 #### Mocking
 * **[Essentials][essentials]**
     * [Patch][patch]
-    * [Mock Object][mock-object]
+    * [The Mock Object][the-mock-object]
     * [How to mock][how-to-mock]
 
 * **[Jedi master level of mocking][advanced]**
@@ -154,4 +154,4 @@ My plans with this repository is to to teach ~~you~~ me how to master on python 
 
 [patch]: ./docs/en/mocking/essentials/patch.md
 [how-to-mock]: ./docs/en/mocking/essentials/how-to-mock.md
-[mock-object]: ./docs/en/mocking/essentials/mock-object.md
+[the-mock-object]: ./docs/en/mocking/essentials/the-mock-object.md

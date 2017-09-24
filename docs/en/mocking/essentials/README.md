@@ -1,7 +1,7 @@
 # Essentials
 
 * [Patch][patch]
-* [Mock Object][mock-object]
+* [The Mock Object][the-mock-object]
 * [How to mock][how-to-mock]
 
 ## Go to
@@ -19,4 +19,4 @@
 
 [patch]: ./patch.md
 [how-to-mock]: ./how-to-mock.md
-[mock-object]: ./mock-object.md
+[the-mock-object]: ./the-mock-object.md

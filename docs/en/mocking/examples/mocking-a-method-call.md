@@ -40,7 +40,7 @@ mock()
 mock.assert_called_once_with()
 ````
 
-Does it look weird to you? Check this [brief explanation of how mock works][mock-object], the come here again.
+Does it look weird to you? Check this [brief explanation of how mock works][the-mock-object], the come here again.
 
 
 ### Using MagicMock
@@ -157,7 +157,7 @@ Also, see the [official docs][official-documentation-mock-object]
 [summary]: ../../
 
 [how-to-mock]: ../essentials/how-to-mock.md
-[mock-object]: ../essentials/mock-object.md
+[the-mock-object]: ../essentials/the-mock-object.md
 
 [mocking-a-method-call-source-code]: https://github.com/otrabalhador/python-testing-by-examples/tree/master/examples/mocking_a_method_call
 
