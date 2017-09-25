@@ -22,7 +22,12 @@ Just do this...
 # coverage run --source=. -m unittest discover
 # coverage report -m
 python -m coverage run --source=. -m unittest discover
+# generate an inline report
 python -m coverage report -m
+# generates an html page
+python -m coverage html -d coverage_html
+
+# your html result will be located in coverage_html/index.html
 ````
 ----
 
