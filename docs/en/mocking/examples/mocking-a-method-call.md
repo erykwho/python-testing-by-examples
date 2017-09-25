@@ -40,7 +40,13 @@ mock()
 mock.assert_called_once_with()
 ````
 
-Does it look weird to you? Check this [brief explanation of how mock works][the-mock-object], the come here again.
+Does it look weird to you?
+
+If so, check this [brief explanation of how the mock object works][the-mock-object], then come here again.
+
+Assuming that this piece of code doesn't scare you, let me show another piece of code.
+
+
 
 
 ### Using MagicMock
