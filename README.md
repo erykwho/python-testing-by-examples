@@ -19,8 +19,10 @@
 
 Just do this...
 ```` bash
-coverage run --source=. -m unittest discover
-coverage report -m
+# coverage run --source=. -m unittest discover
+# coverage report -m
+python -m coverage run --source=. -m unittest discover
+python -m coverage report -m
 ````
 ----
 
