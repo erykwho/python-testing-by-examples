@@ -15,8 +15,14 @@
     * [How to mock][how-to-mock]
 
 * **[Jedi master level of mocking][advanced]**
+#### Coverage
 
----
+Just do this...
+```` bash
+coverage run --source=. -m unittest discover
+coverage report -m
+````
+----
 
 ## DAFUCK IS A TEST?
 
