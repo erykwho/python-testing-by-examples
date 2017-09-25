@@ -8,8 +8,6 @@ If we are testing **MethodY**, can we mock **MethodX** so our **test doesn't mak
 
 ![Of Course][of-course-gif]
 
-
-
 In this example we are going to mock a **GET HTTP request** that fetches a list of countries from a [world population API][population-api].
 
 Also, we will assert if our method is calling the right url `http://api.population.io/1.0/countries`.
@@ -29,36 +27,10 @@ This is where the HTTP request will be made.
 
 ## How can we mock it?
 
-### Using Mock
-First, take a look at this code:
-
-```` python
-from unittest.mock import Mock
-mock = Mock()
-mock.return_value = 3
-mock()
-mock.assert_called_once_with()
-````
-
-Does it look weird to you?
-
-If so, check this [brief explanation of how the mock object works][the-mock-object], then come here again.
-
-Assuming that this piece of code doesn't scare you, let me show another piece of code.
-
-
-
-
-### Using MagicMock
-
-![Wait and see...][wait-gif]
-
 ### Using patch
 
-Even with patch you can mock this guy in several ways.
-
-#### Patch as decorator
-You will use the `@patch('package.module.method')` just before the test method.
+#### Using patch as decorator
+You will use the `@patch('package.module.method')` decorator just before the test method.
 This will create the mock that will be passed as parameter to your test function.
 
 ```` python
@@ -85,7 +57,7 @@ class TestGetCountriesWithPatchAsDecorator(unittest.TestCase):
 
         self.assertEqual(expected_countries, actual_countries)
 ````
-#### Straight-forward patch
+#### Using a straight-forward patch
 ```` python
 
 class TestGetCountriesWithStraightForward(unittest.TestCase):
@@ -109,7 +81,7 @@ class TestGetCountriesWithStraightForward(unittest.TestCase):
 
         self.assertEqual(expected_countries, actual_countries)
 ````
-#### Patch as context manager
+#### Using patch as context manager
 ```` python
 class TestGetCountriesWithContextManagerPatch(unittest.TestCase):
     def test_get_countries(self):
