@@ -14,7 +14,7 @@ class TestIoUtils(unittest.TestCase):
     def test_get_content_from_file_path(self):
         expected = 'banana'
         file_path = ''
-        with patch('examples.count_lines_from_file.io_utils.open', mock_open(read_data=expected)) as m:
+        with patch('examples.io_utils.io_utils.open', mock_open(read_data=expected)) as m:
             actual = io_utils.get_content_from_file_path(file_path)
             m.assert_called_once_with(file_path, 'r')
 
@@ -25,7 +25,7 @@ class TestIoUtils(unittest.TestCase):
         file_content = "banana"
         expected = file_content + extra
         file_path = 'motherfucking/file/path'
-        with patch('examples.count_lines_from_file.io_utils.open', mock_open(read_data=file_content)) as file:
+        with patch('examples.io_utils.io_utils.open', mock_open(read_data=file_content)) as file:
             actual = io_utils.return_file_with_extra_text(file_path, extra)
             file.assert_called_once_with(file_path, 'r')
 
